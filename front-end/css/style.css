@@ -1,0 +1,15 @@
+.card{
+    background-color: gainsboro;
+    margin-top: 5px;
+}
+.card-body{
+    display: flex;
+    justify-content: space-between;
+}
+.contain-left{
+    margin: 0px !important;
+}
+.contain-right{
+
+    margin: 5px;
+}

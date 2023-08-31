@@ -1,9 +1,16 @@
 const express = require("express");
+const cors = require('cors');
 const fs = require("fs");
 const app = express();
-const PORT = 3000;
+const PORT = 5500;
 app.listen(PORT, () => {});
+
+app.use(cors());
 app.use(express.json());
+app.use(express.static('front-end'));
+
+// app.use(cors({origin:'*'}));
+// app.use(express.static('front-end'))
 
 const readUser = () => {
   const users = fs.readFileSync("users.json", "utf8");
@@ -90,3 +97,4 @@ app.get("/users/:id", (req, res) => {
       res.status(404).send({ message: "User not found" });
     }
   });
+  
