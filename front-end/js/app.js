@@ -1,10 +1,9 @@
-
-// const axios = require('axios');
 const name = document.getElementById('name');
 const email = document.getElementById('email');
 const checkbox = document.getElementById('check-input');
 const IP = "localhost";
 const PORT = 5500;
+let HTTP_REQUEST_USER = 'http://localhost:5500/users'; // Replace with your server's URL
 
 const contain = document.querySelector('#contain');
 function displayUsers(response) {
@@ -12,7 +11,6 @@ function displayUsers(response) {
     
     for (let user of users){
        
-
         const card = document.createElement('div');
         let card_body = document.createElement('div');
         let left = document.createElement('div');
@@ -57,13 +55,18 @@ function displayUsers(response) {
 }
 
 let getUsers = () => {
-    let HTTP_REQUEST_USER = 'http://localhost:5500/users'; // Replace with your server's URL
     axios.get(HTTP_REQUEST_USER)
       .then(displayUsers)
       .catch((err) => console.log(err));
   };
 
+let addUsers = (e) => {
+  let newUser = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+  }
+  axios.post(HTTP_REQUEST_USER, newUser)
+  .then(response =>{})
+}
 getUsers();
-
-
 
