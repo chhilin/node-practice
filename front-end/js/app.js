@@ -1,3 +1,4 @@
+
 const name = document.getElementById('name');
 const email = document.getElementById('email');
 const checkbox = document.getElementById('check-input');
@@ -38,6 +39,8 @@ function displayUsers(response) {
 
         btn_edit.textContent = 'Edit';
         btn_delete.textContent = 'Delete';
+        btn_delete.addEventListener('click', () => deleteUser(user.id));
+        
 
         left.appendChild(p1);
         left.appendChild(p2);
@@ -51,6 +54,7 @@ function displayUsers(response) {
 
         card.appendChild(card_body);
         contain.appendChild(card)
+
     }
 }
 
@@ -68,5 +72,13 @@ let addUsers = (e) => {
   axios.post(HTTP_REQUEST_USER, newUser)
   .then(response =>{})
 }
+let deleteUser = (id) => {
+  let HTTP_REQUEST_USER = `http://localhost:5500/users/${id}`;
+  axios.delete(HTTP_REQUEST_USER)
+  .then(response=>{
+    location.reload();
+    ;})
+}
+
 getUsers();
 
